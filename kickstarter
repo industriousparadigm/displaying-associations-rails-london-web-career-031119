@@ -1,0 +1,50 @@
+Project
+
+GET /projects index.erb
+projects#index
+get '/projects', to: "projects#index"
+READ
+
+@projects = Project.all
+SELECT * FROM projects
+
+def index
+  @projects = Project.all
+end
+
+def show
+  @project = Project.find(params[:id])
+end
+
+def new ( GET "/projects/new" )
+
+end
+
+def create ( POST "/projects" )
+  @project = Project.new(params.require(:project).permit(:name, :budget))
+  redirect project_path(@project)
+end
+
+def edit ( GET "/projects/:id/edit" )
+  @project = Project.find(params[:id])
+end
+
+def update ( POST "/projects/:id")
+  @project.find(params[:id])
+  @project.update(params)
+  redirect_to project_path(@project)
+end
+
+def destroy ( GET projects/:id/destroy / DELETE projects/:id  )
+  @project.find(params[:id]).destroy
+  redirect_to projects_path
+end
+
+
+
+
+
+
+
+
+
